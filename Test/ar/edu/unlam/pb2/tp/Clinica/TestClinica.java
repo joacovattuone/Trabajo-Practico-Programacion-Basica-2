@@ -14,14 +14,16 @@ public class TestClinica {
 	private Persona paciente;
 	private Persona medico;
 	private Turno turno;
-	
+
 	@Before
 	public void setUp() {
-		/*Integer dNI, String nombre, String apellido, String email, Double monto,TipoObraSocial tipoObraSocial,LocalDate fechaNac*/
-		 paciente= new Paciente(12564985, "Joaquin", "Perez", "joaq.Perez@gmail.com", 5000.0,TipoObraSocial.PAMI,LocalDate.of(2002, Month.JANUARY, 5));
-		 /*Integer dni, String nombre, String apellido, String email, Double monto,String matricula,TipoEspecialidad tipoEspecialidad,Integer antiguedad*/
-		 medico= new Medico(22658102,"Marta","Gonzales","marta.Gonzales@gmail.com",0.0,"MC-2036",TipoEspecialidad.OTORRINOLARINGOLOGIA,5);
-	
+		
+		paciente = new Paciente(12564985, "Joaquin", "Perez", "joaq.Perez@gmail.com", 5000.0, TipoObraSocial.PAMI,
+				LocalDate.of(2002, Month.JANUARY, 5));
+		
+		medico = new Medico(22658102, "Marta", "Gonzales", "marta.Gonzales@gmail.com", 0.0, "MC-2036",
+				TipoEspecialidad.OTORRINOLARINGOLOGIA, 5);
+
 	}
 
 	@Test
@@ -40,7 +42,12 @@ public class TestClinica {
 	}
 
 	@Test
-	public void noDeberiaEncontrarConMatriculaInexistente() {
+	public void noDeberiaEncontrarMedicoConMatriculaInexistente() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void obtenerMontoTotalObtenidoPorUnMedicoEnUnDia() {
 		fail("Not yet implemented");
 	}
 
@@ -65,17 +72,7 @@ public class TestClinica {
 	}
 
 	@Test
-	public void obtenerMontoTotalObtenidoPorUnMedicoEnUnDia() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void noDeberiaElMedicoAtenderDosPacienteEnUnMismoDia() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void obtenerReporteDeLosPacientesAtendidosPorMedicoPorDia() {
+	public void noDeberiaElMedicoAtenderDosPacientesEnUnMismoDia() {
 		fail("Not yet implemented");
 	}
 
@@ -88,5 +85,12 @@ public class TestClinica {
 	public void deberiaOrdenarMedicosPorEspecialidaPorOrdenAscendente() {
 		fail("Not yet implemented");
 	}
+
+	@Test
+	public void obtenerReporteDeLosPacientesAtendidosPorMedicoPorDia() {
+		fail("Not yet implemented");
+	}
+
+
 
 }
