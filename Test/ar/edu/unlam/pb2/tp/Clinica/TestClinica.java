@@ -27,67 +27,67 @@ public class TestClinica {
 	}
 
 	@Test
-	public void deberiaRegistrarPacienteYMedico() {
+   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void noDeberiaRegistrarConIdDuplicado() {
+	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos()  {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void deberiaCalcularCostoCorrectamente() {
+	public void deberiaPermitirRegistrarUnPacienteCorrectamente() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void noDeberiaEncontrarMedicoConMatriculaInexistente() {
+	public void noDeberiaPermitirRegistrarUnPacienteConElMismoDni() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void obtenerMontoTotalObtenidoPorUnMedicoEnUnDia() {
+	public void deberiaCalcularElHonorarioFinalDeUnCirujanoConCosto() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void deberiaAplicarDescuentoPorTipoObraSocial() {
+	public void deberiaCalcularElCostoDelTurnoConDescuentoSiElPacienteTieneObraSocial () {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void deberiaOrdenarPacientePorApellidoDescendente() {
+	public void deberiaPermitirAgendarUnTurnoCorrectamente() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void deberiaAgendarTurnoAPacienteCorrectamente() {
+	public void noDeberiaPermitirAgendarDosTurnosEnElMismoHorario() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void deberiaReprogramarTurnoDePaciente() {
+	public void noDeberiaPermitirAgendarUnTurnoConProfesionalNoRegistrado() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void noDeberiaElMedicoAtenderDosPacientesEnUnMismoDia() {
+	public void deberiaObtenerElProximoTurnoSegunOrdenCronologico() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void noDeberiaPermitirCancelarUnTurnoYaCancelado() {
+	public void deberiaObtenerLosTurnosDeUnProfesionalOrdenadosPorFecha () {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void deberiaOrdenarMedicosPorEspecialidaPorOrdenAscendente() {
+	public void deberiaObtenerLosProfesionalesOrdenadosPorHonorarioFinalYEnCasoDeEmpatePorMatricula () {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void obtenerReporteDeLosPacientesAtendidosPorMedicoPorDia() {
+	public void deberiaCalcularLaRecaudacionTotalDeLaClinica() {
 		fail("Not yet implemented");
 	}
 
