@@ -1,39 +1,74 @@
 package ar.edu.unlam.pb2.tp.Clinica;
 
-import java.time.LocalDate;
+import java.util.Objects;
 
-public class Paciente extends Persona {
-	/* ATRIBUTOS */
-	private TipoObraSocial tipoObraSocial;
-	private LocalDate fechaNac;
-
-	/* CONSTRUCTOR */
-	public Paciente(Integer dNI, String nombre, String apellido, String email, Double monto,TipoObraSocial tipoObraSocial,LocalDate fechaNac) {
-		super(dNI, nombre, apellido, email, monto);
-		this.tipoObraSocial=tipoObraSocial;
-		this.fechaNac=fechaNac;
-
+public class Paciente implements Descontable {
+	 
+	private String dni;
+	private String nombre;
+	private String apellido;
+	private ObraSocial obraSocial;
+ 
+	public Paciente(String dni, String nombre, String apellido, ObraSocial obraSocial) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.obraSocial = obraSocial;
+	}
+ 
+	@Override
+	public Double calcularDescuento(Double valor) {
+		Double porcentaje = 0.0;
+		switch (this.obraSocial) {
+		case OSDE:
+			porcentaje = 40.0;
+			break;
+		case SWISS_MEDICAL:
+			porcentaje = 30.0;
+			break;
+		case GALENO:
+			porcentaje = 20.0;
+			break;
+		default:
+			porcentaje = 0.0;
+			break;
+		}
+		return valor * porcentaje / 100;
+	}
+ 
+	public String getDni() {
+		return dni;
+	}
+ 
+	public String getNombre() {
+		return nombre;
+	}
+ 
+	public String getApellido() {
+		return apellido;
+	}
+ 
+	public ObraSocial getObraSocial() {
+		return obraSocial;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(dni);
 	}
 
 	@Override
-	public Double calcularCosto() {
-		return null;
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		return Objects.equals(dni, other.dni);
 	}
 
-	public TipoObraSocial getTipoObraSocial() {
-		return tipoObraSocial;
-	}
-
-	public void setTipoObraSocial(TipoObraSocial tipoObraSocial) {
-		this.tipoObraSocial = tipoObraSocial;
-	}
-
-	public LocalDate getEdad() {
-		return fechaNac;
-	}
-
-	public void setEdad(LocalDate fechaNac) {
-		this.fechaNac = fechaNac;
-	}
+	
 
 }

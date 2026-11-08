@@ -11,30 +11,41 @@ import org.junit.Test;
 public class TestClinica {
 	/* aca van los private */
 	private SistemaGestor sistema;
-	private Persona paciente;
-	private Persona medico;
-	private Turno turno;
+	private Cirujano cirujano;
+	private Profesional pediatra;
+	private Profesional pediatraDos;
+	private Profesional cardiologo;
+	private Paciente pacienteSinObra;
+	private Paciente pacienteOsde;
+	private Paciente pacienteSwiss;	
 
 	@Before
-	public void setUp() {
-		
-		paciente = new Paciente(12564985, "Joaquin", "Perez", "joaq.Perez@gmail.com", 5000.0, TipoObraSocial.PAMI,
-				LocalDate.of(2002, Month.JANUARY, 5));
-		
-		medico = new Medico(22658102, "Marta", "Gonzales", "marta.Gonzales@gmail.com", 0.0, "MC-2036",
-				TipoEspecialidad.OTORRINOLARINGOLOGIA, 5);
-
+	public void setup() {
+		cirujano = new Cirujano("M001", "Juan", "Perez", 10000.0, 3, 2000.0);
+		pediatra = new Pediatra("M002", "Ana", "Gomez", 8000.0);
+		cardiologo = new Cardiologo("M003", "Luis", "Lopez", 10000.0);
+		pediatraDos = new Pediatra("M004", "Sofia", "Ruiz", 0.0);		
+		pacienteSinObra = new Paciente("11111111", "Carlos", "Diaz", ObraSocial.SIN_OBRA_SOCIAL);
+		pacienteOsde = new Paciente("22222222", "Marta", "Soto", ObraSocial.OSDE);
+		pacienteSwiss = new Paciente("33333333", "Pablo", "Vega", ObraSocial.SWISS_MEDICAL);		
 	}
 
 	@Test
-   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() {
-		fail("Not yet implemented");
-	}
+   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() throws Exception {
+		sistema = new SistemaGestor();
 
-	@Test
-	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos()  {
-		fail("Not yet implemented");
+		boolean seRegistroProfesional = sistema.registrarProfesional(cirujano);
+		boolean seRegistroPaciente = sistema.registrarPaciente(pacienteSinObra);
+
+		assertTrue(seRegistroProfesional);
+		assertTrue(seRegistroPaciente);
 	}
+	
+	@Test(expected = HonorarioNegativoOCero.class)
+	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos() throws Exception {
+		sistema.registrarProfesional(pediatraDos);
+	}
+ 
 
 	@Test
 	public void deberiaPermitirRegistrarUnPacienteCorrectamente() {
