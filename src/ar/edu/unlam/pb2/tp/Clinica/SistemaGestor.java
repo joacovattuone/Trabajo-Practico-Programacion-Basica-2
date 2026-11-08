@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeMap;
 
+
+
 public class SistemaGestor {
 
 	private HashSet<Paciente> pacientes;
@@ -31,14 +33,24 @@ public class SistemaGestor {
 			throws DatosInvalidosException, ProfesionalExistenteException, HonorarioNegativoOCero {
 		if (profesional == null || profesional.getMatricula() == null || profesional.getNombre() == null
 				|| profesional.getApellido() == null || profesional.getHonorarioBase() == null) {
-			throw new DatosInvalidosException("Algun parametro esta nulo");
+			throw new DatosInvalidosException("Los datos del profesional no pueden ser nulos");
 		}
-		if (profesional.getHonorarioBase() <= 0.0) {
-			throw new HonorarioNegativoOCero("El honorario tiene que ser mayor a 0");
+		if (profesional.getHonorarioBase() <= 0) {
+			throw new DatosInvalidosException("El honorario base debe ser mayor a 0");
 		}
-		if (this.profesionales.containsKey(profesional.getMatricula())) {
-			throw new ProfesionalExistenteException("Esta matricula ya existe");
+		if (profesionales.containsKey(profesional.getMatricula())) {
+			throw new ProfesionalExistenteException("Ya existe un profesional con la matricula " + profesional.getMatricula());
 		}
+//		if (profesional == null || profesional.getMatricula() == null || profesional.getNombre() == null
+//				|| profesional.getApellido() == null || profesional.getHonorarioBase() == null) {
+//			throw new DatosInvalidosException("Algun parametro esta nulo");
+//		}
+//		if (profesional.getHonorarioBase() <= 0.0) {
+//			throw new HonorarioNegativoOCero("El honorario tiene que ser mayor a 0");
+//		}
+//		if (this.profesionales.containsKey(profesional.getMatricula())) {
+//			throw new ProfesionalExistenteException("Esta matricula ya existe");
+//		}
 	}
 	
 	public boolean registrarPaciente(Paciente paciente) throws DatosInvalidosException, PacienteExistenteException {
