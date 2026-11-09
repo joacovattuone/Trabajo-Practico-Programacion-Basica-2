@@ -27,7 +27,8 @@ public class TestClinica {
 		pediatraDos = new Pediatra("M004", "Sofia", "Ruiz", 0.0);		
 		pacienteSinObra = new Paciente("11111111", "Carlos", "Diaz", ObraSocial.SIN_OBRA_SOCIAL);
 		pacienteOsde = new Paciente("22222222", "Marta", "Soto", ObraSocial.OSDE);
-		pacienteSwiss = new Paciente("33333333", "Pablo", "Vega", ObraSocial.SWISS_MEDICAL);		
+		pacienteSwiss = new Paciente("33333333", "Pablo", "Vega", ObraSocial.SWISS_MEDICAL);
+		
 	}
 
 	@Test
@@ -43,13 +44,15 @@ public class TestClinica {
 	
 	@Test(expected = HonorarioNegativoOCero.class)
 	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos() throws Exception {
+		sistema = new SistemaGestor();
 		sistema.registrarProfesional(pediatraDos);
 	}
  
 
 	@Test
-	public void deberiaPermitirRegistrarUnPacienteCorrectamente() {
-		fail("Not yet implemented");
+	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
+		sistema.registrarProfesional(pediatra);
+		sistema.registrarProfesional(new Cardiologo("M-002", "Otro", "Medico", 500.0));
 	}
 
 	@Test
