@@ -17,7 +17,7 @@ public class TestClinica {
 	private Profesional cardiologo;
 	private Paciente pacienteSinObra;
 	private Paciente pacienteOsde;
-	private Paciente pacienteSwiss;	
+	private Paciente pacienteSwiss;		
 
 	@Before
 	public void setup() {
@@ -54,6 +54,7 @@ public class TestClinica {
 		sistema.registrarProfesional(pediatra);
 		sistema.registrarProfesional(new Cardiologo("M-002", "Otro", "Medico", 500.0));
 	}
+	
 
 	@Test
 	public void noDeberiaPermitirRegistrarUnPacienteConElMismoDni() {
