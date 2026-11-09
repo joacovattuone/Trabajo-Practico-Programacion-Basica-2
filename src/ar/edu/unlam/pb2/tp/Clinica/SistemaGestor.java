@@ -41,32 +41,23 @@ public class SistemaGestor {
 		if (profesionales.containsKey(profesional.getMatricula())) {
 			throw new ProfesionalExistenteException("Ya existe un profesional con la matricula " + profesional.getMatricula());
 		}
-//		if (profesional == null || profesional.getMatricula() == null || profesional.getNombre() == null
-//				|| profesional.getApellido() == null || profesional.getHonorarioBase() == null) {
-//			throw new DatosInvalidosException("Algun parametro esta nulo");
-//		}
-//		if (profesional.getHonorarioBase() <= 0.0) {
-//			throw new HonorarioNegativoOCero("El honorario tiene que ser mayor a 0");
-//		}
-//		if (this.profesionales.containsKey(profesional.getMatricula())) {
-//			throw new ProfesionalExistenteException("Esta matricula ya existe");
-//		}
+
 	}
 	
-	public boolean registrarPaciente(Paciente paciente) throws DatosInvalidosException, PacienteExistenteException {
+	public boolean registrarPaciente(Paciente paciente) throws DatosInvalidosException, PacienteExistenteException, DniInvalidoException {
 		validarPaciente(paciente);
 
 		this.pacientes.add(paciente);
 		return true;
 	}
 
-	private void validarPaciente(Paciente paciente) throws DatosInvalidosException, PacienteExistenteException {
+	private void validarPaciente(Paciente paciente) throws DatosInvalidosException, PacienteExistenteException, DniInvalidoException {
 		if (paciente == null || paciente.getDni() == null || paciente.getNombre() == null
 				|| paciente.getApellido() == null || paciente.getObraSocial() == null) {
 			throw new DatosInvalidosException("Algun parametro esta nulo");
 		}
 		if (paciente.getDni().length() != 8) {
-			throw new DatosInvalidosException("El dni tiene que tener 8 caracteres");
+			throw new DniInvalidoException("El dni tiene que tener 8 caracteres");
 		}
 		if (this.pacientes.contains(paciente)) {
 			throw new PacienteExistenteException("Este dni ya existe");
