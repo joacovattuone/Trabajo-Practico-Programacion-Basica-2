@@ -224,6 +224,7 @@ public class TestClinica {
 		assertEquals(2, turnosConOsde.size());
 		assertEquals(turnoTres, turnosConOsde.get(0));
 		assertEquals(turnoDos, turnosConOsde.get(1));
+		//agrego COMENTARIO PARA MARI
 	}
 }
  
