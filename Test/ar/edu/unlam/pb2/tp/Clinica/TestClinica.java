@@ -21,10 +21,11 @@ public class TestClinica {
 
 	@Before
 	public void setup() {
+		sistema= new SistemaGestor();
 		cirujano = new Cirujano("M001", "Juan", "Perez", 10000.0, 3, 2000.0);
 		pediatra = new Pediatra("M002", "Ana", "Gomez", 8000.0);
 		cardiologo = new Cardiologo("M003", "Luis", "Lopez", 10000.0);
-		pediatraDos = new Pediatra("M004", "Sofia", "Ruiz", 0.0);		
+		pediatraDos = new Pediatra("M004", "Sofia", "Ruiz", 8000.0);		
 		pacienteSinObra = new Paciente("11111111", "Carlos", "Diaz", ObraSocial.SIN_OBRA_SOCIAL);
 		pacienteOsde = new Paciente("22222222", "Marta", "Soto", ObraSocial.OSDE);
 		pacienteSwiss = new Paciente("33333333", "Pablo", "Vega", ObraSocial.SWISS_MEDICAL);
@@ -33,7 +34,7 @@ public class TestClinica {
 
 	@Test
    public void deberiaPermitirRegistrarUnProfesionalCorrectamente() throws Exception {
-		sistema = new SistemaGestor();
+		
 
 		boolean seRegistroProfesional = sistema.registrarProfesional(cirujano);
 		boolean seRegistroPaciente = sistema.registrarPaciente(pacienteSinObra);
@@ -42,18 +43,22 @@ public class TestClinica {
 		assertTrue(seRegistroPaciente);
 	}
 	
-	@Test(expected = HonorarioNegativoOCero.class)
+	@Test(expected =DatosInvalidosException.class)
 	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos() throws Exception {
+
 		sistema = new SistemaGestor();
 		sistema.registrarProfesional(pediatraDos);
-	}
- 
+		
+		sistema.registrarProfesional(new Pediatra("M-010", "Sol", "Vega", 0.0));
 
-	@Test(expected = ProfesionalExistenteException.class)
-	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
-		sistema = new SistemaGestor();
+	} 
+
+		
+	@Test (expected= ProfesionalExistenteException.class)
+	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {			
 		sistema.registrarProfesional(pediatra);
 		sistema.registrarProfesional(new Cardiologo("M002", "Otro", "Medico", 500.0));
+
 	}
 	
 
