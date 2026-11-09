@@ -58,7 +58,7 @@ public class TestClinica {
 	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {			
 		sistema.registrarProfesional(pediatra);
 		sistema.registrarProfesional(new Cardiologo("M002", "Otro", "Medico", 500.0));
-
+//asdadasdasd
 	}
 	
 
