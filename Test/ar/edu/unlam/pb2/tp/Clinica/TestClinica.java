@@ -18,7 +18,7 @@ public class TestClinica {
 	private Paciente pacienteSinObra;
 	private Paciente pacienteOsde;
 	private Paciente pacienteSwiss;		
- 
+
 	@Before
 	public void setup() {
 		sistema= new SistemaGestor();
@@ -48,6 +48,8 @@ public class TestClinica {
 		sistema.registrarProfesional(pediatraDos);
 		
 		sistema.registrarProfesional(new Pediatra("M-010", "Sol", "Vega", 0.0));
+		
+		if (sistema.equals(pacienteSinObra));
 	}
  
 		
