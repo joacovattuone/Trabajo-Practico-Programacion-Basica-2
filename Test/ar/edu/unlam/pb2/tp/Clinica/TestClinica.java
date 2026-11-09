@@ -225,6 +225,7 @@ public class TestClinica {
 		assertEquals(turnoTres, turnosConOsde.get(0));
 		assertEquals(turnoDos, turnosConOsde.get(1));
 		//agrego COMENTARIO PARA MARI
+		//asfdasdasdasd
 	}
 }
  

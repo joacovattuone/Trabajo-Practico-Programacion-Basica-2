@@ -9,5 +9,6 @@ public class Cardiologo extends Profesional {
 	@Override
 	public Double calcularHonorarioFinal() {
 		return getHonorarioBase() * (1 + 0.30);
+		//dasda
 	}
 }
