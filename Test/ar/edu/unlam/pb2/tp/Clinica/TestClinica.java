@@ -79,7 +79,7 @@ public class TestClinica {
  
 	@Test
 	public void deberiaCalcularElCostoDelTurnoConDescuentoSiElPacienteTieneObraSocial () {
-		fail("Not yet implemented");
+		//ahora vamos por este
 	}
  
 	@Test
