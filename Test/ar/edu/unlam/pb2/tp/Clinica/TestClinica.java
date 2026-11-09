@@ -49,7 +49,7 @@ public class TestClinica {
 		
 		sistema.registrarProfesional(new Pediatra("M-010", "Sol", "Vega", 0.0));
 		
-		if (sistema.equals(pacienteSinObra));
+		
 	}
  
 		
