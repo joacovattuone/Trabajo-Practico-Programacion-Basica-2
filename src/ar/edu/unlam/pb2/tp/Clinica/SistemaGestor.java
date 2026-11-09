@@ -56,7 +56,7 @@ public class SistemaGestor {
 				|| paciente.getApellido() == null || paciente.getObraSocial() == null) {
 			throw new DatosInvalidosException("Algun parametro esta nulo");
 		}
-		if (paciente.getDni().length() != 8) {
+		if (paciente.getDni() < 10000000 || paciente.getDni() > 99999999) {
 			throw new DniInvalidoException("El dni tiene que tener 8 caracteres");
 		}
 		if (this.pacientes.contains(paciente)) {

@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Paciente implements Descontable {
 	 
-	private String dni;
+	private Integer dni;
 	private String nombre;
 	private String apellido;
 	private ObraSocial obraSocial;
  
-	public Paciente(String dni, String nombre, String apellido, ObraSocial obraSocial) {
+	public Paciente(Integer dni, String nombre, String apellido, ObraSocial obraSocial) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -36,7 +36,7 @@ public class Paciente implements Descontable {
 		return valor * porcentaje / 100;
 	}
  
-	public String getDni() {
+	public Integer getDni() {
 		return dni;
 	}
  
