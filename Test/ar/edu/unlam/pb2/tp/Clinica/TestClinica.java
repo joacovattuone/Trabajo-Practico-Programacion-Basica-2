@@ -49,9 +49,10 @@ public class TestClinica {
 	}
  
 
-	@Test
-	public void deberiaPermitirRegistrarUnPacienteCorrectamente() {
-		fail("Not yet implemented");
+	@Test (expected=)
+	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
+		sistema.registrarProfesional(pediatra);
+		sistema.registrarProfesional(new Cardiologo("M-002", "Otro", "Medico", 500.0));
 	}
 
 	@Test
