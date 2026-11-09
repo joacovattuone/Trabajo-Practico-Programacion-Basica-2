@@ -49,8 +49,9 @@ public class TestClinica {
 	}
  
 
-	@Test (expected=)
+	@Test (expected = DniInvalidoException.class)
 	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
+		
 		sistema.registrarProfesional(pediatra);
 		sistema.registrarProfesional(new Cardiologo("M-002", "Otro", "Medico", 500.0));
 	}
