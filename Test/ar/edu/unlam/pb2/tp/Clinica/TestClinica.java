@@ -50,15 +50,18 @@ public class TestClinica {
 		sistema.registrarProfesional(pediatraDos);
 		
 		sistema.registrarProfesional(new Pediatra("M-010", "Sol", "Vega", 0.0));
-
 	} 
 
 		
-	@Test (expected= ProfesionalExistenteException.class)
-	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {			
+		
+
+	@Test(expected = ProfesionalExistenteException.class)
+	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
+
 		sistema.registrarProfesional(pediatra);
-		sistema.registrarProfesional(new Cardiologo("M002", "Otro", "Medico", 500.0));
-//asdadasdasd
+
+		sistema.registrarProfesional(new Cardiologo("M002", "Otro", "Medico", 500.0));		
+
 	}
 	
 
