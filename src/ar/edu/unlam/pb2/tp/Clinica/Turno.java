@@ -8,6 +8,7 @@ public class Turno {
 	private final Profesional profesional;
 	private final LocalDate fecha;
 	private EstadoTurno estado;
+	private String hola;
  
 	public Turno(Paciente paciente, Profesional profesional, LocalDate fecha) {
 		this.paciente = paciente;
