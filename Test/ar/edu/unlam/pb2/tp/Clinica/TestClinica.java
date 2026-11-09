@@ -3,7 +3,6 @@ package ar.edu.unlam.pb2.tp.Clinica;
 import static org.junit.Assert.*;
  
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
