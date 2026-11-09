@@ -33,8 +33,7 @@ public class TestClinica {
 	}
 
 	@Test
-   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() throws Exception {
-		
+   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() throws Exception {		
 
 		boolean seRegistroProfesional = sistema.registrarProfesional(cirujano);
 		boolean seRegistroPaciente = sistema.registrarPaciente(pacienteSinObra);
@@ -45,8 +44,7 @@ public class TestClinica {
 	
 	@Test(expected =DatosInvalidosException.class)
 	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos() throws Exception {
-
-		sistema = new SistemaGestor();
+		
 		sistema.registrarProfesional(pediatraDos);
 		
 		sistema.registrarProfesional(new Pediatra("M-010", "Sol", "Vega", 0.0));
