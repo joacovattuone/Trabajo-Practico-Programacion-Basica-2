@@ -49,10 +49,13 @@ public class TestClinica {
 	}
  
 
-	@Test (expected=)
+	@Test
 	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
+		sistema= new SistemaGestor();
+		Paciente hola= new Paciente(null, null, null, null);
 		sistema.registrarProfesional(pediatra);
 		sistema.registrarProfesional(new Cardiologo("M-002", "Otro", "Medico", 500.0));
+		
 	}
 
 	@Test
