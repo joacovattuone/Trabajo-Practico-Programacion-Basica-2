@@ -148,6 +148,7 @@ public class TestClinica {
 		sistema.registrarPaciente(pacienteSinObra);
 
 		sistema.agendarTurno(pacienteSinObra, cirujano, LocalDate.now().plusDays(2));
+		/*holi*/
 	}
 
 	@Test
