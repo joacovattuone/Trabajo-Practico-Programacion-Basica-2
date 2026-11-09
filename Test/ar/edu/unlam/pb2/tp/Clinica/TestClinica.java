@@ -18,6 +18,7 @@ public class TestClinica {
 	private Paciente pacienteSinObra;
 	private Paciente pacienteOsde;
 	private Paciente pacienteSwiss;		
+	private Paciente pacientesadafdafa;		
 
 	@Before
 	public void setup() {
