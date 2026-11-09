@@ -2,7 +2,7 @@ package ar.edu.unlam.pb2.tp.Clinica;
 
 import java.time.LocalDate;
 
-public class Turno {
+public class Turno  implements Comparable<Turno>{
 	 
 	private final Paciente paciente;
 	private final Profesional profesional;
@@ -40,5 +40,14 @@ public class Turno {
  
 	void setEstado(EstadoTurno estado) {
 		this.estado = estado;
+	}
+	
+	@Override
+	public int compareTo(Turno otroTurno) {
+		int resultado = this.fecha.compareTo(otroTurno.getFecha());
+		if (resultado == 0) {
+			resultado = this.profesional.getMatricula().compareTo(otroTurno.getProfesional().getMatricula());
+		}
+		return resultado;
 	}
 }

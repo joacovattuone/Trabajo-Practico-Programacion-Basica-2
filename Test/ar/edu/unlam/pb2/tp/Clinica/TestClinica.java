@@ -5,10 +5,14 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
  
 import org.junit.Before;
 import org.junit.Test;
+ 
+ 
  
 public class TestClinica {
 	/* aca van los private */
@@ -151,28 +155,76 @@ public class TestClinica {
  
 	}
  
+	@Test(expected = TurnoInvalidoException.class)
+	public void noDeberiaPermitirAgendarUnTurnoConFechaAnteriorAHoy() throws Exception {
+		sistema.registrarProfesional(cirujano);
+		sistema.registrarPaciente(pacienteSinObra);
+ 
+		sistema.agendarTurno(pacienteSinObra, cirujano, LocalDate.now().minusDays(1));
+	}
+ 
+	@Test(expected = TurnoInvalidoException.class)
+	public void noDeberiaPermitirConsultarRangoConFechasInvalidas() throws Exception {
+		sistema.registrarProfesional(cirujano);
+ 
+		sistema.obtenerTurnosEnRango(cirujano, LocalDate.now().plusDays(5), LocalDate.now().plusDays(1));
+		
+	}
+ 
 	@Test
-	public void noDeberiaPermitirAgendarUnTurnoConFechaAnteriorAHoy() {
+	public void deberiaObtenerLosProfesionalesOrdenadosPorHonorarioFinalYEnCasoDeEmpatePorMatricula() throws Exception {
+		sistema.registrarProfesional(pediatraDos);
+		sistema.registrarProfesional(pediatra);
+		sistema.registrarProfesional(cardiologo);
+		sistema.registrarProfesional(cirujano);
+ 
+		List<Profesional> ordenados = sistema.listarProfesionalesPorHonorarioFinal();
+ 
+		assertEquals(4, ordenados.size());
+		assertEquals(cirujano, ordenados.get(0));
+		assertEquals(cardiologo, ordenados.get(1));
+		assertEquals(pediatra, ordenados.get(2));
+		assertEquals(pediatraDos, ordenados.get(3));
+	}
+ 
+	@Test(expected = TurnoNoCancelableException.class)
+	public void noDeberiaPermitirCancelarUnTurnoYaAtendido() throws Exception {
+		sistema.registrarProfesional(cirujano);
+		sistema.registrarPaciente(pacienteSinObra);
+		Turno turno = sistema.agendarTurno(pacienteSinObra, cirujano, LocalDate.now().plusDays(2));
+ 
+		sistema.atenderTurno(turno);
+		sistema.cancelarTurno(turno);
  
 	}
  
 	@Test
-	public void noDeberiaPermitirConsultarRangoConFechasInvalidas() {
-		fail("Not yet implemented");
-	}
+	public void deberiaCalcularLaRecaudacionTotalYObtenerElHistorialDeTurnosPorPaciente() throws Exception {
+		sistema.registrarProfesional(cirujano);
+		sistema.registrarProfesional(pediatra);
+		sistema.registrarPaciente(pacienteSinObra);
+		sistema.registrarPaciente(pacienteOsde);
  
-	@Test
-	public void deberiaObtenerLosProfesionalesOrdenadosPorHonorarioFinalYEnCasoDeEmpatePorMatricula() {
-		fail("Not yet implemented");
-	}
+		Turno turnoUno = sistema.agendarTurno(pacienteSinObra, pediatra, LocalDate.now().plusDays(2));
+		Turno turnoDos = sistema.agendarTurno(pacienteOsde, cirujano, LocalDate.now().plusDays(4));
+		Turno turnoTres = sistema.agendarTurno(pacienteOsde, pediatra, LocalDate.now().plusDays(1));
  
-	@Test
-	public void noDeberiaPermitirCancelarUnTurnoYaAtendido() {
- 
-	}
- 
-	@Test
-	public void deberiaCalcularLaRecaudacionTotalYObtenerElHistorialDeTurnosPorPaciente() {
- 
+		assertTrue(sistema.atenderTurno(turnoUno));
+		assertTrue(sistema.atenderTurno(turnoDos));
+		
+		assertEquals(18400, sistema.calcularRecaudacionTotal(), 0.0);
+		
+		HashMap<Paciente, ArrayList<Turno>> historial = sistema.obtenerHistorialPorPaciente();
+		assertEquals(2, historial.size());
+		
+		ArrayList<Turno> turnosSinObraSocial = historial.get(pacienteSinObra);
+		assertEquals(1, turnosSinObraSocial.size());
+		assertEquals(turnoUno, turnosSinObraSocial.get(0));
+		
+		ArrayList<Turno> turnosConOsde = historial.get(pacienteOsde);
+		assertEquals(2, turnosConOsde.size());
+		assertEquals(turnoTres, turnosConOsde.get(0));
+		assertEquals(turnoDos, turnosConOsde.get(1));
 	}
 }
+ 
