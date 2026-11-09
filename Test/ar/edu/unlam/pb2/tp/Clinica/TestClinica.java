@@ -145,12 +145,20 @@ public class TestClinica {
 
 	@Test(expected = ProfesionalNoEncontradoException.class)
 	public void noDeberiaPermitirAgendarUnTurnoConProfesionalNoRegistrado() throws Exception {
-		
+		sistema.registrarPaciente(pacienteSinObra);
+
+		sistema.agendarTurno(pacienteSinObra, cirujano, LocalDate.now().plusDays(2));
+
 	}
 
 	@Test
-	public void deberiaObtenerLosTurnosDeUnProfesionalOrdenadosPorFecha() {
-		
+	public void noDeberiaPermitirAgendarUnTurnoConFechaAnteriorAHoy() {
+
+	}
+
+	@Test
+	public void noDeberiaPermitirConsultarRangoConFechasInvalidas() {
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -159,8 +167,12 @@ public class TestClinica {
 	}
 
 	@Test
-	public void deberiaCalcularLaRecaudacionTotalDeLaClinica() {
-		fail("Not yet implemented");
+	public void noDeberiaPermitirCancelarUnTurnoYaAtendido() {
+
 	}
 
+	@Test
+	public void deberiaCalcularLaRecaudacionTotalYObtenerElHistorialDeTurnosPorPaciente() {
+
+	}
 }
