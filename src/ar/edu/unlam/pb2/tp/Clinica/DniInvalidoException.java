@@ -6,5 +6,4 @@ public class DniInvalidoException extends Exception {
 		super(mensaje);
 	
 	}
-
 }

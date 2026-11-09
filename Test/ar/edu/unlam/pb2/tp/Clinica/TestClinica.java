@@ -1,13 +1,13 @@
 package ar.edu.unlam.pb2.tp.Clinica;
-
+ 
 import static org.junit.Assert.*;
-
+ 
 import java.time.LocalDate;
 import java.time.Month;
-
+ 
 import org.junit.Before;
 import org.junit.Test;
-
+ 
 public class TestClinica {
 	/* aca van los private */
 	private SistemaGestor sistema;
@@ -17,8 +17,8 @@ public class TestClinica {
 	private Profesional cardiologo;
 	private Paciente pacienteSinObra;
 	private Paciente pacienteOsde;
-	private Paciente pacienteSwiss;	
-
+	private Paciente pacienteSwiss;		
+ 
 	@Before
 	public void setup() {
 		sistema= new SistemaGestor();
@@ -28,16 +28,16 @@ public class TestClinica {
 		pediatraDos = new Pediatra("M004", "Sofia", "Ruiz", 8000.0);		
 		pacienteSinObra = new Paciente("11111111", "Carlos", "Diaz", ObraSocial.SIN_OBRA_SOCIAL);
 		pacienteOsde = new Paciente("22222222", "Marta", "Soto", ObraSocial.OSDE);
-		pacienteSwiss = new Paciente("33333333", "Pablo", "Vega", ObraSocial.SWISS_MEDICAL);		
-	}
-
-	@Test
-   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() throws Exception {
+		pacienteSwiss = new Paciente("33333333", "Pablo", "Vega", ObraSocial.SWISS_MEDICAL);
 		
-
+	}
+ 
+	@Test
+   public void deberiaPermitirRegistrarUnProfesionalCorrectamente() throws Exception {		
+ 
 		boolean seRegistroProfesional = sistema.registrarProfesional(cirujano);
 		boolean seRegistroPaciente = sistema.registrarPaciente(pacienteSinObra);
-
+ 
 		assertTrue(seRegistroProfesional);
 		assertTrue(seRegistroPaciente);
 	}
@@ -45,67 +45,76 @@ public class TestClinica {
 	@Test(expected =DatosInvalidosException.class)
 	public void noDeberiaPermitirRegistrarUnProfesionalConDatosIncorrectos() throws Exception {
 		
+		sistema.registrarProfesional(pediatraDos);
+		
 		sistema.registrarProfesional(new Pediatra("M-010", "Sol", "Vega", 0.0));
 	}
  
-
-	@Test (expected = DniInvalidoException.class)
-	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
 		
+		
+ 
+	@Test(expected = ProfesionalExistenteException.class)
+	public void noDeberiaPermitirRegistrarUnProfesionalConMatriculaDuplicada() throws Exception {
+ 
 		sistema.registrarProfesional(pediatra);
-		sistema.registrarProfesional(new Cardiologo("M-002", "Otro", "Medico", 500.0));
+ 
+		sistema.registrarProfesional(new Cardiologo("M002", "Otro", "Medico", 500.0));		
+ 
 	}
-
+	
+ 
 	@Test
 	public void noDeberiaPermitirRegistrarUnPacienteConElMismoDni() {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaCalcularElHonorarioFinalDeUnCirujanoConCosto() {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaCalcularElCostoDelTurnoConDescuentoSiElPacienteTieneObraSocial () {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaPermitirAgendarUnTurnoCorrectamente() {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void noDeberiaPermitirAgendarDosTurnosEnElMismoHorario() {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void noDeberiaPermitirAgendarUnTurnoConProfesionalNoRegistrado() {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaObtenerElProximoTurnoSegunOrdenCronologico() {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaObtenerLosTurnosDeUnProfesionalOrdenadosPorFecha () {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaObtenerLosProfesionalesOrdenadosPorHonorarioFinalYEnCasoDeEmpatePorMatricula () {
 		fail("Not yet implemented");
 	}
-
+ 
 	@Test
 	public void deberiaCalcularLaRecaudacionTotalDeLaClinica() {
 		fail("Not yet implemented");
 	}
-
-
-
+ 
+ 
+ 
 }
+ 
+ 
