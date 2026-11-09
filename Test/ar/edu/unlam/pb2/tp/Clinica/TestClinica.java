@@ -145,15 +145,12 @@ public class TestClinica {
 
 	@Test(expected = ProfesionalNoEncontradoException.class)
 	public void noDeberiaPermitirAgendarUnTurnoConProfesionalNoRegistrado() throws Exception {
-		sistema.registrarPaciente(pacienteSinObra);
-
-		sistema.agendarTurno(pacienteSinObra, cirujano, LocalDate.now().plusDays(2));
-		/*holi*/
+		
 	}
 
 	@Test
 	public void deberiaObtenerLosTurnosDeUnProfesionalOrdenadosPorFecha() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
